@@ -26,7 +26,7 @@ echo "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman" > /etc/sudoers.d/11-aur_b
 
 # Install yay
 curl https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz -o /home/aur_builder/yay.tar.gz
-sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && makepkg -si'
+sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && makepkg -si --noconfirm'
 rm -Rf ~aur_builder/yay
 
 # Install cloud-init
@@ -38,4 +38,3 @@ sudo -u aur_builder yay -S --noconfirm kubectl-bin kubelet-bin kubeadm-bin conta
 
 echo "Cleaning up"
 rm /kernel.pkg.tar.xz /kernel-headers.pkg.tar.xz
-rm /var/cache/pacman/pkg/*.tar.xz

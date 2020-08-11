@@ -86,3 +86,5 @@ umount -R /mnt
 
 # Delete loopback devices
 losetup -d "$LBDEV"
+
+# Zero empty space
