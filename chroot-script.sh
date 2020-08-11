@@ -28,11 +28,11 @@ ln -s /usr/bin/vendor_perl/po4a /usr/bin/po4a
 
 # Install fakeroot-tcp to avoid (https://archlinuxarm.org/forum/viewtopic.php?t=14466&p=63662)
 curl https://aur.archlinux.org/cgit/aur.git/snapshot/fakeroot-tcp.tar.gz -o /home/aur_builder/fakeroot-tcp.tar.gz
-sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf fakeroot-tcp.tar.gz && cd fakeroot-tcp && makepkg -si'
+sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf fakeroot-tcp.tar.gz && cd fakeroot-tcp && makepkg -si --noconfirm'
 
 # Install fakeroot-tcp
 curl https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz -o /home/aur_builder/yay.tar.gz
-sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && makepkg -si'
+sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && makepkg -si --noconfirm'
 rm -Rf ~aur_builder/yay
 
 # Install yay
