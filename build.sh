@@ -70,11 +70,16 @@ for mnt in sys dev run; do
   mkdir -p "/mnt/$mnt"
   mount -o bind "/$mnt" "/mnt/$mnt/"
 done
+
+rm /mnt/etc/resolv.conf
 cp /etc/resolv.conf /mnt/etc/resolv.conf
 
 chroot /mnt /chroot-script.sh
 
 rm /mnt/chroot-script.sh
+
+# Put resolv.conf symlink back
+ln -sf /run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
 
 # Unmount loopback devices
 umount -R /mnt
