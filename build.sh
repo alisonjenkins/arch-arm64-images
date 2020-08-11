@@ -65,7 +65,7 @@ cp ./chroot-script.sh /mnt/
 chown 755 /mnt/chroot-script.sh
 
 # setup chroot
-mount -t proc /proc proc/
+mount -t proc /proc /mnt/proc/
 for mnt in sys dev run; do
   mkdir -p "/mnt/$mnt"
   mount -t rbind "/$mnt" "/mnt/$mnt/"
