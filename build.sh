@@ -12,6 +12,7 @@ function create_image_file() {
 
   IMAGE_SIZE=$(echo "($BOOT_SIZE_MB + $ROOT_SIZE_MB) * 1024 * 1024" | bc)
 
+  echo "Creating empty image at $IMG_PATH with the size of $IMAGE_SIZE"
   test -f "$IMG_PATH" || dd if=/dev/zero of="$IMG_PATH" count="$IMAGE_SIZE"
 }
 
