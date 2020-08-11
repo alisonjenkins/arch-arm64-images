@@ -17,6 +17,8 @@ function create_image_file() {
 
 function partition_image_file() {
   local IMG_PATH=$1
+  local BOOT_SIZE_MB=$2
+  local ROOT_SIZE_MB=$3
 
   parted -s "$IMG_PATH" "mklabel msdos"
   parted --align optimal -s "$IMG_PATH" "mkpart primary fat32 2048s $((BOOT_SIZE_MB + 1))M"
@@ -27,10 +29,10 @@ function partition_image_file() {
 IMG_PATH="$(pwd)/arch-aarch64.img"
 
 # Create a file to partition to create the image
-create_image_file "$IMG_PATH"
+create_image_file "$IMG_PATH" "$BOOT_SIZE_MB" "$ROOT_SIZE_MB"
 
 # Partition the image
-partition_image_file "$IMG_PATH"
+partition_image_file "$IMG_PATH" "$BOOT_SIZE_MB" "$ROOT_SIZE_MB"
 
 # Setup loopback devices
 LBDEV=$(losetup --find --show --partscan "$IMG_PATH")
