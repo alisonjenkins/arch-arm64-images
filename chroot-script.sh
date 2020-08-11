@@ -30,8 +30,8 @@ sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && 
 rm -Rf ~aur_builder/yay
 
 # Install cloud-init
-curl -L https://www.archlinux.org/packages/community/any/cloud-init/download/ -o /home/aur_builder/cloud-init.tar.gz
-sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf cloud-init.tar.gz && cd cloud-init && yes | makepkg -si --noconfirm'
+curl -L https://www.archlinux.org/packages/community/any/cloud-init/download/ -o /home/aur_builder/cloud-init.pkg.tar.xz
+sudo pacman --noconfirm -U /home/aur_builder/cloud-init.pkg.tar.xz
 sudo -u aur_builder yay -S --noconfirm growpart
 
 # Install kubernetes binaries
