@@ -22,6 +22,7 @@ function partition_image_file() {
   parted -s "$IMG_PATH" "toggle 1 boot"
 }
 
+IMG_PATH="$(pwd)/arch-aarch64.img"
 
 # Create a file to partition to create the image
 create_image_file "$IMG_PATH"
@@ -39,12 +40,12 @@ mkfs.vfat -n "BOOT" -F32 "${LBDEV}p1"
 mkfs.ext4 -L "ROOT" "${LBDEV}p2"
 
 # mount partitions
-mount -o suid "${LBDEV}p2" /mnt/
+mount "${LBDEV}p2" /mnt/
 mkdir /mnt/boot
 mount "${LBDEV}p1" /mnt/boot
 
 # Download the Arch aarch64 base
-ARCH_BASE_TAR_PATH="/work/arch-aarch64.tar.gz"
+ARCH_BASE_TAR_PATH="$(pwd)/arch-aarch64.tar.gz"
 test -f "$ARCH_BASE_TAR_PATH" || curl -L 'https://olegtown.pw/Public/ArchLinuxArm/RPi4/rootfs/ArchLinuxARM-rpi-4-aarch64-2020-07-12.tar.gz' -o "$ARCH_BASE_TAR_PATH"
 
 KERNEL_PATH="/mnt/kernel.pkg.tar.xz"
