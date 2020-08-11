@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Partition sizes
 BOOT_SIZE_MB=300
-ROOT_SIZE_MB=4000
+ROOT_SIZE_MB=2000
 
 function create_image_file() {
   local IMG_PATH=$1
