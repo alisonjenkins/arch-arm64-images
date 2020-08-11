@@ -26,7 +26,7 @@ echo "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman" > /etc/sudoers.d/11-aur_b
 
 # Install yay
 curl https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz -o /home/aur_builder/yay.tar.gz
-sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && makepkg -si --noconfirm'
+sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && yes | yes | makepkg -si --noconfirm'
 rm -Rf ~aur_builder/yay
 
 # Install cloud-init
