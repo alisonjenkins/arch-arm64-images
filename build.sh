@@ -64,6 +64,10 @@ tar xvpf "$ARCH_BASE_TAR_PATH" -C /mnt/
 cp ./chroot-script.sh /mnt/
 chown 755 /mnt/chroot-script.sh
 
+# Copy patches
+cp ./netplan-Makefile.patch /mnt/
+cp ./netplan-PKGBUILD.patch /mnt/
+
 # setup chroot
 mount -t proc /proc /mnt/proc/
 for mnt in sys dev run; do

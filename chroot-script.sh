@@ -35,6 +35,8 @@ rm -Rf ~aur_builder/yay
 ## As pandoc is awol in Arch Linux ARM's repos.
 mkdir -p /home/aur_builder/netplan
 curl https://raw.githubusercontent.com/archlinux/svntogit-community/packages/netplan/trunk/PKGBUILD -o /home/aur_builder/netplan/PKGBUILD
+patch PKGBUILD /netplan-PKGBUILD.patch
+cp netplan-Makefile.patch /home/aur_builder/netplan/
 
 # Install cloud-init
 curl -L https://www.archlinux.org/packages/community/any/cloud-init/download/ -o /home/aur_builder/cloud-init.pkg.tar.xz
