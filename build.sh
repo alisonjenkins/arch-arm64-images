@@ -7,8 +7,10 @@ ROOT_SIZE_MB=4000
 
 function create_image_file() {
   local IMG_PATH=$1
+  local BOOT_SIZE_MB=$2
+  local ROOT_SIZE_MB=$3
 
-  IMAGE_SIZE=$(echo "($BOOT_SIZE_MB + $ROOT_SIZE_MB) * 1024 * 1024)" | bc)
+  IMAGE_SIZE=$(echo "($BOOT_SIZE_MB + $ROOT_SIZE_MB) * 1024 * 1024" | bc)
 
   test -f "$IMG_PATH" || dd if=/dev/zero of="$IMG_PATH" count="$IMAGE_SIZE"
 }
