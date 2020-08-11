@@ -1,0 +1,47 @@
+8c8
+< arch=('x86_64')
+---
+> arch=('aarch64')
+12,15c12,15
+<       'glib2'
+<       'python-yaml'
+<       'python-netifaces'
+<       'iproute2'
+---
+>   'glib2'
+>   'python-yaml'
+>   'python-netifaces'
+>   'iproute2'
+18,20c18,19
+<       'python'
+<       'pkgconf'
+<       'pandoc'
+---
+>   'python'
+>   'pkgconf'
+23c22,26
+<       "https://github.com/CanonicalLtd/${pkgname}/archive/${pkgver}.tar.gz"
+---
+>   #"${pkgver}.tar.gz"
+>   "netplan-${pkgver}.tar.gz"
+> )
+> sha256sums=(
+>   'SKIP'
+25d27
+< sha256sums=('6ed7e12c88f972361f794a715dbd80cb85b822d2dc8c4ca9c7605aebbc008cb3')
+28,30c30,32
+<       cd "${pkgname}-${pkgver}"
+<       env
+<       make
+---
+>   cd "${pkgname}-${pkgver}"
+>   env
+>   make
+34,35c36,37
+<       cd "${pkgname}-${pkgver}"
+<       make DESTDIR="${pkgdir}" ROOTPREFIX=/usr SBINDIR=/usr/bin install
+---
+>   cd "${pkgname}-${pkgver}"
+>   make DESTDIR="${pkgdir}" ROOTPREFIX=/usr SBINDIR=/usr/bin install
+37d38
+<

@@ -84,7 +84,9 @@ ln -sf /run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
 # Unmount loopback devices
 umount -R /mnt
 
-# Delete loopback devices
-losetup -d "$LBDEV"
-
 # Zero empty space
+yum install zerofree
+zerofree "${LBDEV}p2"
+
+# Delete loopback devices
+losetup -D "$LBDEV"
