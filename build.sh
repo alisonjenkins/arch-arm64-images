@@ -68,7 +68,7 @@ chown 755 /mnt/chroot-script.sh
 mount -t proc /proc /mnt/proc/
 for mnt in sys dev run; do
   mkdir -p "/mnt/$mnt"
-  mount -t bind "/$mnt" "/mnt/$mnt/"
+  mount -o bind "/$mnt" "/mnt/$mnt/"
 done
 cp /etc/resolv.conf /mnt/etc/resolv.conf
 
