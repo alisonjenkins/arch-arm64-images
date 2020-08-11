@@ -10,10 +10,10 @@ function create_image_file() {
   local BOOT_SIZE_MB=$2
   local ROOT_SIZE_MB=$3
 
-  IMAGE_SIZE=$(echo "($BOOT_SIZE_MB + $ROOT_SIZE_MB) * 1024 * 1024" | bc)
+  IMAGE_SIZE=$(( BOOT_SIZE_MB + ROOT_SIZE_MB + 3))
 
   echo "Creating empty image at $IMG_PATH with the size of $IMAGE_SIZE"
-  test -f "$IMG_PATH" || dd if=/dev/zero of="$IMG_PATH" count="$IMAGE_SIZE"
+  test -f "$IMG_PATH" || dd if=/dev/zero of="$IMG_PATH" bs=1M count="$IMAGE_SIZE"
 }
 
 function partition_image_file() {
