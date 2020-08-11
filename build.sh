@@ -64,8 +64,15 @@ tar xvpf "$ARCH_BASE_TAR_PATH" -C /mnt/
 cp ./chroot-script.sh /mnt/
 chown 755 /mnt/chroot-script.sh
 
-# chroot
-arch-chroot /mnt /chroot-script.sh
+# setup chroot
+mount -t proc /proc proc/
+for mnt in sys dev run; do
+  mkdir -p "/mnt/$mnt"
+  mount -t rbind "/$mnt" "/mnt/$mnt/"
+done
+cp /etc/resolv.conf /mnt/etc/resolv.conf
+
+chroot /mnt /chroot-script.sh
 
 rm /mnt/chroot-script.sh
 
