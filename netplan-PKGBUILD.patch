@@ -1,47 +1,33 @@
-8c8
-< arch=('x86_64')
----
-> arch=('aarch64')
-12,15c12,15
-<       'glib2'
-<       'python-yaml'
-<       'python-netifaces'
-<       'iproute2'
----
->   'glib2'
->   'python-yaml'
->   'python-netifaces'
->   'iproute2'
-18,20c18,19
-<       'python'
-<       'pkgconf'
-<       'pandoc'
----
->   'python'
->   'pkgconf'
-23c22,26
-<       "https://github.com/CanonicalLtd/${pkgname}/archive/${pkgver}.tar.gz"
----
->   #"${pkgver}.tar.gz"
->   "netplan-${pkgver}.tar.gz"
-> )
-> sha256sums=(
->   'SKIP'
-25d27
-< sha256sums=('6ed7e12c88f972361f794a715dbd80cb85b822d2dc8c4ca9c7605aebbc008cb3')
-28,30c30,32
-<       cd "${pkgname}-${pkgver}"
-<       env
-<       make
----
->   cd "${pkgname}-${pkgver}"
->   env
->   make
-34,35c36,37
-<       cd "${pkgname}-${pkgver}"
-<       make DESTDIR="${pkgdir}" ROOTPREFIX=/usr SBINDIR=/usr/bin install
----
->   cd "${pkgname}-${pkgver}"
->   make DESTDIR="${pkgdir}" ROOTPREFIX=/usr SBINDIR=/usr/bin install
-37d38
-<
+--- PKGBUILD    2020-08-12 16:43:47.045529405 +0000
++++ PKGBUILD.mod        2020-08-12 16:43:32.405631366 +0000
+@@ -5,7 +5,7 @@
+ pkgver=0.99
+ pkgrel=1
+ pkgdesc="Network configuration abstraction renderer"
+-arch=('x86_64')
++arch=('aarch64')
+ url="https://github.com/CanonicalLtd/netplan"
+ license=('GPL3')
+ depends=(
+@@ -17,15 +17,19 @@
+ makedepends=(
+   'python'
+   'pkgconf'
+-  'pandoc'
+ )
+ source=(
+   "https://github.com/CanonicalLtd/${pkgname}/archive/${pkgver}.tar.gz"
++  "netplan-Makefile.patch"
++)
++sha256sums=(
++  '6ed7e12c88f972361f794a715dbd80cb85b822d2dc8c4ca9c7605aebbc008cb3'
++  '48f1598db2ad618f6c059a189bd7c7675b3515361e3708bac57a578945aeaa39'
+ )
+-sha256sums=('6ed7e12c88f972361f794a715dbd80cb85b822d2dc8c4ca9c7605aebbc008cb3')
+
+ build() {
+   cd "${pkgname}-${pkgver}"
++  patch Makefile "${src}/netplan-Makefile.patch"
+   env
+   make
+ }

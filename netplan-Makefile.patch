@@ -1,39 +1,17 @@
-936c36
-< default: netplan/_features.py generate netplan-dbus dbus/io.netplan.Netplan.service doc/netplan.html doc/netplan.5 doc/netplan-generate.8 doc/netplan-apply.8 doc/netplan-try.8
----
-> default: netplan/_features.py generate netplan-dbus dbus/io.netplan.Netplan.service
-120d119
-<       install -m 644 doc/*.html $(DESTDIR)/$(DOCDIR)/netplan/
-122,123d120
-<       install -m 644 doc/*.5 $(DESTDIR)/$(MANDIR)/man5/
-<       install -m 644 doc/*.8 $(DESTDIR)/$(MANDIR)/man8/
-133,142d129
-<
-<
-< %.html: %.md
-<       pandoc -s --toc -o $@ $<
-<
-< doc/netplan.5: doc/manpage-header.md doc/netplan.md doc/manpage-footer.md
-<       pandoc -s -o $@ $^
-<
-< %.8: %.md
-<       pandoc -s -o $@ $^36c36
-< default: netplan/_features.py generate netplan-dbus dbus/io.netplan.Netplan.service doc/netplan.html doc/netplan.5 doc/netplan-generate.8 doc/netplan-apply.8 doc/netplan-try.8
----
-> default: netplan/_features.py generate netplan-dbus dbus/io.netplan.Netplan.service
-120d119
-<       install -m 644 doc/*.html $(DESTDIR)/$(DOCDIR)/netplan/
-122,123d120
-<       install -m 644 doc/*.5 $(DESTDIR)/$(MANDIR)/man5/
-<       install -m 644 doc/*.8 $(DESTDIR)/$(MANDIR)/man8/
-133,142d129
-<
-<
-< %.html: %.md
-<       pandoc -s --toc -o $@ $<
-<
-< doc/netplan.5: doc/manpage-header.md doc/netplan.md doc/manpage-footer.md
-<       pandoc -s -o $@ $^
-<
-< %.8: %.md
-<       pandoc -s -o $@ $^
+--- src/netplan-0.99/Makefile   2020-04-15 22:33:27.000000000 +0000
++++ Makefile.modified   2020-08-12 16:26:10.162988140 +0000
+@@ -131,14 +131,4 @@
+ %.service: %.service.in
+        sed -e "s#@ROOTLIBEXECDIR@#$(ROOTLIBEXECDIR)#" $< > $@
+
+-
+-%.html: %.md
+-       pandoc -s --toc -o $@ $<
+-
+-doc/netplan.5: doc/manpage-header.md doc/netplan.md doc/manpage-footer.md
+-       pandoc -s -o $@ $^
+-
+-%.8: %.md
+-       pandoc -s -o $@ $^
+-
+ .PHONY: clean
