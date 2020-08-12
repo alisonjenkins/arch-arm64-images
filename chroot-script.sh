@@ -38,6 +38,7 @@ curl https://raw.githubusercontent.com/archlinux/svntogit-community/packages/net
 patch /home/aur_builder/netplan/PKGBUILD /netplan-PKGBUILD.patch
 rm /netplan-PKGBUILD.patch
 cp /netplan-Makefile.patch /home/aur_builder/netplan/
+chown -R aur_builder:aur_builder /home/aur_builder/netplan
 sudo -u aur_builder bash -c 'cd ~aur_builder && cd /home/aur_builder/netplan/ && yes | makepkg -si --noconfirm'
 
 # Install cloud-init
