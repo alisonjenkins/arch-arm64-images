@@ -33,7 +33,7 @@ PYFLAKES3 ?= $(shell which pyflakes-3 || which pyflakes3 || echo true)
 PYCODESTYLE3 ?= $(shell which pycodestyle-3 || which pycodestyle || which pep8 || echo true)
 NOSETESTS3 ?= $(shell which nosetests-3 || which nosetests3 || echo true)
 
-default: netplan/_features.py generate netplan-dbus dbus/io.netplan.Netplan.service doc/netplan.html doc/netplan.5 doc/netplan-generate.8 doc/netplan-apply.8 doc/netplan-try.8
+default: netplan/_features.py generate netplan-dbus dbus/io.netplan.Netplan.service
 
 %.o: src/%.c
 	$(CC) $(BUILDFLAGS) $(CFLAGS) $(LDFLAGS) -c $^ `pkg-config --cflags --libs glib-2.0 gio-2.0 yaml-0.1 uuid`
@@ -62,7 +62,6 @@ netplan/_features.py: src/[^_]*.[hc]
 
 clean:
 	rm -f netplan/_features.py src/_features.h
-	rm -f generate doc/*.html doc/*.[1-9]
 	rm -f *.o *.so*
 	rm -f netplan-dbus dbus/*.service
 	rm -f *.gcda *.gcno generate.info
@@ -71,7 +70,6 @@ clean:
 check: default linting
 	tests/cli.py
 	$(NOSETESTS3) -v --with-coverage
-	tests/validate_docs.sh
 
 linting:
 	$(PYFLAKES3) $(PYCODE)
@@ -117,10 +115,7 @@ install: default
 	install -m 644 src/*.h $(DESTDIR)/$(INCLUDEDIR)/netplan/
 	# TODO: install pkg-config once available
 	# docs, data
-	install -m 644 doc/*.html $(DESTDIR)/$(DOCDIR)/netplan/
 	install -m 644 examples/*.yaml $(DESTDIR)/$(DOCDIR)/netplan/examples/
-	install -m 644 doc/*.5 $(DESTDIR)/$(MANDIR)/man5/
-	install -m 644 doc/*.8 $(DESTDIR)/$(MANDIR)/man8/
 	install -T -D -m 644 netplan.completions $(DESTDIR)/$(BASH_COMPLETIONS_DIR)/netplan
 	# dbus
 	mkdir -p $(DESTDIR)/$(DATADIR)/dbus-1/system.d $(DESTDIR)/$(DATADIR)/dbus-1/system-services
