@@ -24,7 +24,7 @@ source=(
 )
 sha256sums=(
   '6ed7e12c88f972361f794a715dbd80cb85b822d2dc8c4ca9c7605aebbc008cb3'
-  'ab8c7ba0677cb0d81121ab5573082619e323dc8b18f4ac3e7028cbf1810dac1d'
+  'SKIP'
 )
 
 build() {
