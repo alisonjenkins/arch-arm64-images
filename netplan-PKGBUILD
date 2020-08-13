@@ -29,7 +29,7 @@ sha256sums=(
 
 build() {
   cd "${pkgname}-${pkgver}"
-  patch Makefile "${src}/netplan-Makefile.patch"
+  patch Makefile ../netplan-Makefile.patch
   env
   make
 }
