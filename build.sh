@@ -87,6 +87,8 @@ rm /mnt/chroot-script.sh
 ln -sf /run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
 
 # Unmount loopback devices
+fuser -k
+fuser -k
 umount /mnt/dev
 umount /mnt/run
 umount -R /mnt
