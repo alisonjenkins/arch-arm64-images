@@ -20,7 +20,7 @@ makedepends=(
 )
 source=(
   "https://github.com/CanonicalLtd/${pkgname}/archive/${pkgver}.tar.gz"
-  "netplan-Makefile.patch"
+  "netplan-Makefile"
 )
 sha256sums=(
   '6ed7e12c88f972361f794a715dbd80cb85b822d2dc8c4ca9c7605aebbc008cb3'
@@ -29,7 +29,7 @@ sha256sums=(
 
 build() {
   cd "${pkgname}-${pkgver}"
-  patch Makefile ../netplan-Makefile.patch
+  cp ../netplan-Makefile Makefile
   env
   make
 }
