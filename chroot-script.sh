@@ -34,7 +34,6 @@ rm -Rf ~aur_builder/yay
 ## Have to patch it to remove all traces of pandoc from it's build
 ## As pandoc is awol in Arch Linux ARM's repos.
 mkdir -p /home/aur_builder/netplan
-cp /netplan-Makefile.patch /home/aur_builder/netplan/
 chown -R aur_builder:aur_builder /home/aur_builder/netplan
 sudo -u aur_builder bash -c 'cd ~aur_builder && cd /home/aur_builder/netplan/ && yes | makepkg -si --noconfirm'
 
