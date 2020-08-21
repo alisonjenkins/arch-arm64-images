@@ -67,9 +67,9 @@ sh sd_fusing.sh "${LBDEV}"
 cd /
 
 # Kill any remaining processes using the mount point
-fuser -k /mnt
-fuser -k /mnt
-fuser -k /mnt
+fuser -k -9 /mnt
+fuser -k -9 /mnt
+fuser -k -9 /mnt
 
 sleep 1
 
