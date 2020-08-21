@@ -4,7 +4,7 @@ set -euo pipefail
 # Partition sizes
 ROOT_SIZE_MB=4000
 
-IMG_PATH="$(pwd)/arch-aarch64.img"
+IMG_PATH="$(pwd)/arch.img"
 
 # Create a file to partition to create the image
 test -f "$IMG_PATH" || dd if=/dev/zero of="$IMG_PATH" bs=1M count="$ROOT_SIZE_MB"
@@ -26,14 +26,14 @@ mkfs.ext4 -L "ROOT" "${LBDEV}p1"
 mount "${LBDEV}p1" /mnt/
 
 # Download the Arch aarch64 base
-ARCH_BASE_TAR_PATH="$(pwd)/arch-aarch64.tar.gz"
-test -f "$ARCH_BASE_TAR_PATH" || curl -L 'https://olegtown.pw/Public/ArchLinuxArm/RPi4/rootfs/ArchLinuxARM-rpi-4-aarch64-2020-07-12.tar.gz' -o "$ARCH_BASE_TAR_PATH"
+ARCH_BASE_TAR_PATH="$(pwd)/arch.tar.gz"
+test -f "$ARCH_BASE_TAR_PATH" || curl -L 'http://os.archlinuxarm.org/os/ArchLinuxARM-odroid-xu3-latest.tar.gz' -o "$ARCH_BASE_TAR_PATH"
 
-KERNEL_PATH="/mnt/kernel.pkg.tar.xz"
-test -f "$KERNEL_PATH" || curl -L 'https://olegtown.pw/Public/ArchLinuxArm/RPi4/kernel/linux-raspberrypi4-5.4.51-1-aarch64.pkg.tar.xz' -o "$KERNEL_PATH"
+# KERNEL_PATH="/mnt/kernel.pkg.tar.xz"
+# test -f "$KERNEL_PATH" || curl -L 'https://olegtown.pw/Public/ArchLinuxArm/RPi4/kernel/linux-raspberrypi4-5.4.51-1-aarch64.pkg.tar.xz' -o "$KERNEL_PATH"
 
-KERNEL_HEADERS_PATH="/mnt/kernel-headers.pkg.tar.xz"
-test -f "$KERNEL_HEADERS_PATH" || curl -L 'https://olegtown.pw/Public/ArchLinuxArm/RPi4/kernel/linux-raspberrypi4-headers-5.4.51-1-aarch64.pkg.tar.xz' -o "$KERNEL_HEADERS_PATH"
+# KERNEL_HEADERS_PATH="/mnt/kernel-headers.pkg.tar.xz"
+# test -f "$KERNEL_HEADERS_PATH" || curl -L 'https://olegtown.pw/Public/ArchLinuxArm/RPi4/kernel/linux-raspberrypi4-headers-5.4.51-1-aarch64.pkg.tar.xz' -o "$KERNEL_HEADERS_PATH"
 
 tar xvpf "$ARCH_BASE_TAR_PATH" -C /mnt/
 

@@ -8,12 +8,12 @@ pacman-key --populate archlinuxarm
 echo "Updating the installed packages"
 pacman -Syu --noconfirm
 
-echo "Installing kernel"
-set +e
-pacman -R --noconfirm linux-aarch64
-set -e
-pacman -U --noconfirm /kernel.pkg.tar.xz /kernel-headers.pkg.tar.xz
-echo "Kernel installed"
+# echo "Installing kernel"
+# set +e
+# pacman -R --noconfirm linux-aarch64
+# set -e
+# pacman -U --noconfirm /kernel.pkg.tar.xz /kernel-headers.pkg.tar.xz
+# echo "Kernel installed"
 
 # Install sudo
 pacman -S --noconfirm sudo base-devel git go
