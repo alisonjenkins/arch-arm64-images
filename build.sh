@@ -61,6 +61,9 @@ rm /mnt/chroot-script.sh
 # Put resolv.conf symlink back
 ln -sf /run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
 
+# Kill any remaining processes using the mount point
+fuser -k /mnt
+
 # Unmount loopback devices
 umount /mnt
 
