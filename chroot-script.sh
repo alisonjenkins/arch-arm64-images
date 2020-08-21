@@ -46,8 +46,5 @@ curl -L https://www.archlinux.org/packages/community/any/cloud-init/download/ -o
 sudo pacman --noconfirm -U /home/aur_builder/cloud-init.pkg.tar.xz
 sudo -u aur_builder yay -S --noconfirm growpart
 
-# Install kubernetes binaries
-sudo -u aur_builder yay -S --noconfirm kubectl-bin kubelet-bin kubeadm-bin containerd
-
 echo "Cleaning up"
 rm /kernel.pkg.tar.xz /kernel-headers.pkg.tar.xz
