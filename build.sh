@@ -84,4 +84,6 @@ zerofree "${LBDEV}p1"
 losetup -D "$LBDEV"
 
 # Compress the image
-xz -T0 arch.img
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install -y pbzip2
+pbzip2 arch.img
