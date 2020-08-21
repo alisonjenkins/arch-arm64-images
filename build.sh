@@ -61,6 +61,11 @@ rm /mnt/chroot-script.sh
 # Put resolv.conf symlink back
 ln -sf /run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
 
+# Do uboot Fuse
+cd /mnt/boot
+sh sd_fusing.sh "${LBDEV}"
+cd /
+
 # Kill any remaining processes using the mount point
 fuser -k /mnt
 fuser -k /mnt
@@ -75,3 +80,6 @@ zerofree "${LBDEV}p1"
 
 # Delete loopback devices
 losetup -D "$LBDEV"
+
+# Compress the image
+xz -T0 arch.img
