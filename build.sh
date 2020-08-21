@@ -41,8 +41,9 @@ cp ./chroot-script.sh /mnt/
 chown 755 /mnt/chroot-script.sh
 
 # Copy patches
-cp ./netplan-Makefile.patch /mnt/
-cp ./netplan-PKGBUILD.patch /mnt/
+mkdir -p /mnt/home/aur_builder/netplan
+cp ./netplan-Makefile /mnt/home/aur_builder/netplan/Makefile
+cp ./netplan-PKGBUILD /mnt/home/aur_builder/netplan/PKGBUILD
 
 # setup chroot
 mount -t proc /proc /mnt/proc/

@@ -29,14 +29,11 @@ curl https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz -o /home/aur_bui
 sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && yes | makepkg -si --noconfirm'
 rm -Rf ~aur_builder/yay
 
-
 # Install netplan (dependency of cloud-init)
 ## Have to patch it to remove all traces of pandoc from it's build
 ## As pandoc is awol in Arch Linux ARM's repos.
-mkdir -p /home/aur_builder/netplan
-curl https://raw.githubusercontent.com/archlinux/svntogit-community/packages/netplan/trunk/PKGBUILD -o /home/aur_builder/netplan/PKGBUILD
-patch PKGBUILD /netplan-PKGBUILD.patch
-cp netplan-Makefile.patch /home/aur_builder/netplan/
+chown -R aur_builder:aur_builder /home/aur_builder
+sudo -u aur_builder bash -c 'cd ~aur_builder/netplan &&  yes | makepkg -si --noconfirm'
 
 # Install cloud-init
 curl -L https://www.archlinux.org/packages/community/any/cloud-init/download/ -o /home/aur_builder/cloud-init.pkg.tar.xz
