@@ -2,6 +2,7 @@
 set -euo pipefail
 
 echo "Initialising pacman"
+rm -fr /etc/pacman.d/gnupg
 pacman-key --init
 pacman-key --populate archlinuxarm
 
