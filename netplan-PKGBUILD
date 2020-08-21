@@ -37,4 +37,5 @@ build() {
 package() {
   cd "${pkgname}-${pkgver}"
   make DESTDIR="${pkgdir}" ROOTPREFIX=/usr SBINDIR=/usr/bin install
+  mkdir "${pkgdir}/etc/netplan"
 }
