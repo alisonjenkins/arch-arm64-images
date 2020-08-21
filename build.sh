@@ -63,12 +63,14 @@ ln -sf /run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
 
 # Kill any remaining processes using the mount point
 fuser -k /mnt
+fuser -k /mnt
+fuser -k /mnt
 
 # Unmount loopback devices
 umount /mnt
 
 # Zero empty space
-yum install zerofree
+yum install -y zerofree
 zerofree "${LBDEV}p1"
 
 # Delete loopback devices
