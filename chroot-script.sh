@@ -26,6 +26,7 @@ echo "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman" > /etc/sudoers.d/11-aur_b
 
 # Install yay
 curl https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz -o /home/aur_builder/yay.tar.gz
+chown -R aur_builder:aur_builder /home/aur_builder
 sudo -u aur_builder bash -c 'cd ~aur_builder && tar xvf yay.tar.gz && cd yay && yes | makepkg -si --noconfirm'
 rm -Rf ~aur_builder/yay
 
@@ -33,7 +34,7 @@ rm -Rf ~aur_builder/yay
 ## Have to patch it to remove all traces of pandoc from it's build
 ## As pandoc is awol in Arch Linux ARM's repos.
 chown -R aur_builder:aur_builder /home/aur_builder
-sudo -u aur_builder bash -c 'cd ~aur_builder/netplan &&  yes | makepkg -si --noconfirm'
+sudo -u aur_builder bash -c 'cd ~aur_builder/netplan && yes | makepkg -si --noconfirm'
 
 # Install cloud-init
 curl -L https://www.archlinux.org/packages/community/any/cloud-init/download/ -o /home/aur_builder/cloud-init.pkg.tar.xz
