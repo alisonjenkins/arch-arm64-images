@@ -35,8 +35,8 @@ rm -Rf ~aur_builder/yay
 ## As pandoc is awol in Arch Linux ARM's repos.
 mkdir -p /home/aur_builder/netplan
 curl https://raw.githubusercontent.com/archlinux/svntogit-community/packages/netplan/trunk/PKGBUILD -o /home/aur_builder/netplan/PKGBUILD
-# cp /netplan-Makefile /home/aur_builder/netplan/
-# cp /netplan-PKGBUILD /home/aur_builder/netplan/
+cp /netplan-Makefile /home/aur_builder/netplan/Makefile
+cp /netplan-PKGBUILD /home/aur_builder/netplan/PKGBUILD
 chown -R aur_builder:aur_builder /home/aur_builder
 sudo -u aur_builder bash -c 'cd ~aur_builder/netplan && yes | makepkg -si --noconfirm'
 
