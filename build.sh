@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Partition sizes
-ROOT_SIZE_MB=3000
+ROOT_SIZE_MB=4000
 
 IMG_PATH="$(pwd)/arch-aarch64.img"
 
