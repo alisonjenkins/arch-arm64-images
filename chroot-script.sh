@@ -45,6 +45,3 @@ sudo -u aur_builder bash -c 'cd ~aur_builder/netplan && yes | makepkg -si --noco
 curl -L https://www.archlinux.org/packages/community/any/cloud-init/download/ -o /home/aur_builder/cloud-init.pkg.tar.xz
 sudo pacman --noconfirm -U /home/aur_builder/cloud-init.pkg.tar.xz
 sudo -u aur_builder yay -S --noconfirm growpart
-
-echo "Cleaning up"
-rm /kernel.pkg.tar.xz /kernel-headers.pkg.tar.xz
