@@ -71,6 +71,8 @@ fuser -k /mnt
 fuser -k /mnt
 fuser -k /mnt
 
+sleep 1
+
 # Unmount loopback devices
 umount /mnt
 
