@@ -7,7 +7,7 @@ ROOT_SIZE_MB=3000
 IMG_PATH="$(pwd)/arch-aarch64.img"
 
 # Create a file to partition to create the image
-test -f "$IMG_PATH" || dd if=/dev/zero of="$IMG_PATH" bs=1M count="$IMAGE_SIZE"
+test -f "$IMG_PATH" || dd if=/dev/zero of="$IMG_PATH" bs=1M count="$ROOT_SIZE_MB"
 
 # Partition the image
 parted -s "$IMG_PATH" "mklabel msdos"
